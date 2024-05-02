@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { addPokemon, findPokemonById, findPokemonByName } from "../../../services/pokemon";
 import { invalidInput, nameTooLong, nameTooShort, pokemonAlreadyExists } from "../../../helpers/errors";
 
-function handleError(error: string, body?: Record<string, any>) {
+function handleError(error: string, body?: Record<string, any>) { //para manejar errores
   const headers = new Headers()
   headers.append('Location', '/')
   headers.append('Set-Cookie', `error=${error}; SameSite=Strict; Path=/; Max-Age=1`)
@@ -15,7 +15,7 @@ function handleError(error: string, body?: Record<string, any>) {
   })
 }
 
-export const POST: APIRoute = async (context) => {
+export const POST: APIRoute = async (context) => { //funcion para agregar un pokemon a la lista de pokemones y manejar errores si no se puede agregar
   const data = await context.request.formData()
 
   const id = parseInt(data.get('id') as string)
